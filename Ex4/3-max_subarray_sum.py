@@ -26,5 +26,7 @@ def max_subarray_sum(arr, start, end):
 
 
 if __name__ == "__main__":
-    nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+    text = input("Enter some space separated numbers: ")
+    nums = [int(num) for num in text.split()]
     print(f"{max_subarray_sum(nums, 0, len(nums)-1)}")
+    

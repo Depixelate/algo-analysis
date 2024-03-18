@@ -37,4 +37,6 @@ def count_inversions(nums):
 
 
 if __name__ == "__main__":
-    print(f"{count_inversions([3, 2, 8, 1])=}")
+    text = input("Enter some space separated numbers: ")
+    nums = [int(num) for num in text.split()]
+    print(f"{count_inversions(nums)=}")

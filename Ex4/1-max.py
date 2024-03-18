@@ -9,6 +9,7 @@ def my_max(arr, start, end):
 
 
 if __name__ == "__main__":
-    nums = [2, 1, 9, 3]
+    text = input("Enter some space separated numbers: ")
+    nums = [int(num) for num in text.split()]
     print(f"{my_max(nums, 0, len(nums)-1)=}")
 

@@ -23,16 +23,20 @@ def partition(arr, start, end, pivot_ind):
             pivot_ind += 1
     return pivot_ind
 
-def k_smallest(arr, k, start, end):
-    print(f"{start=}, {end=}")
+def k_smallest_insert(arr, k):
+    insertion_sort(arr)
+    return arr[k-1]
+
+def k_smallest_partition(arr, k, start, end):
+    #print(f"{start=}, {end=}")
     if start == end:
         return arr[start]
     pivot_ind = partition(arr, start, end, random.randint(start, end))
     if pivot_ind == k - 1:
         return arr[pivot_ind]
     if pivot_ind > k - 1:
-        return k_smallest(arr, k, start, pivot_ind - 1)
-    return k_smallest(arr, k, pivot_ind + 1, end)
+        return k_smallest_partition(arr, k, start, pivot_ind - 1)
+    return k_smallest_partition(arr, k, pivot_ind + 1, end)
 
 if __name__ == "__main__":
     seed = time.time_ns()
@@ -41,5 +45,5 @@ if __name__ == "__main__":
     nums_str = input("Enter comma separated numbers: ")
     nums = [int(num_str) for num_str in nums_str.split(',')]
     k = int(input("Enter k: "))
-    k_small = k_smallest(nums, k, 0, len(nums) - 1)
+    k_small = k_smallest_partition(nums, k, 0, len(nums) - 1)
     print(f"K-th smallest elem: {k_small}")

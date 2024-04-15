@@ -2,6 +2,7 @@ import math
 import matplotlib.pyplot as plt
 import random
 import time
+import re
 
 class Point:
     def __init__(self, x, y):
@@ -14,6 +15,9 @@ class Point:
     @staticmethod
     def dist(a, b):
         return (a.x - b.x)**2 + (a.y - b.y)**2
+    
+    def __str__(self):
+        return f"({self.x}, {self.y})"
     
 def closest_points(points):
     points_sorted_x = sorted(points, key = lambda p:p.x)
@@ -47,26 +51,31 @@ def closest_points_helper(points_x, points_y):
 
     return p1, p2, d
 
-n = 100
-points = [Point(random.uniform(0, 100), random.uniform(0, 100)) for i in range(n)]
-start = time.perf_counter()
-ap1, ap2, ad = None,  None, math.inf
-for i, t1 in enumerate(points):
-    for t2 in points[i+1:]:
-        if((temp_d:=Point.dist(t1, t2)) < ad):
-            ad = temp_d
-            ap1 = t1
-            ap2 = t2
-print(f"{ad=}")
-end = time.perf_counter()
-print(f"{end - start = }")
+# n = 100
+# points = [Point(random.uniform(0, 100), random.uniform(0, 100)) for i in range(n)]
+
+points_str = input("Enter points as (x1, y1), (x2, y2), (x3, y3), ...: ")
+matches = re.findall(r'\(\s*([-\d.]*)\s*,\s*([-\d.]*)\s*\)', points_str)
+points = [Point(float(match[0]), float(match[1])) for match in matches]
+
+# start = time.perf_counter()
+# ap1, ap2, ad = None,  None, math.inf
+# for i, t1 in enumerate(points):
+#     for t2 in points[i+1:]:
+#         if((temp_d:=Point.dist(t1, t2)) < ad):
+#             ad = temp_d
+#             ap1 = t1
+#             ap2 = t2
+# print(f"{ad=}")
+# end = time.perf_counter()
+# print(f"{end - start = }")
 plt.scatter(*zip(*[p.tuple() for p in points]), c='blue')
-start = time.perf_counter()
+# start = time.perf_counter()
 p1, p2, d = closest_points(points)
-print(f"{d=}")
+print(f"Closest pair of points = [{p1}, {p2}], square of distance between them = {d}")
 end = time.perf_counter()
-print(f"{end - start = }")
+#print(f"{end - start = }")
 plt.scatter([p1.x, p2.x], [p1.y, p2.y], color = 'green')
-plt.scatter([ap1.x,ap2.x], [ap1.y, ap2.y], color = 'red')
+#plt.scatter([ap1.x,ap2.x], [ap1.y, ap2.y], color = 'red')
 #plt.hlines(0, 0, 100)
 plt.show()

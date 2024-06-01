@@ -23,7 +23,7 @@ def knapsack_dpp_helper(table, weight_left, items, index):
     )
     skip_item = (knapsack_dpp_helper(table, weight_left, items, index + 1), table.get((index+1, weight_left)))
     item = max(keep_item, skip_item, key=lambda item:item[0])
-    table[(index, weight_left)] = Entry(keep_item=item is keep_item, index=index, value=item[0], ref=item[1])
+    table[(index, weight_left)] = Entry(keep_item=item is keep_item and item[0] != 0, index=index, value=item[0], ref=item[1])
     return item[0]
 
 def knapsack_dpp(max_weight, items):

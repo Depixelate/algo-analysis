@@ -6,8 +6,6 @@ def make_change_bnb_helper(change, target_remaining, denoms, index, coins_used):
     global min_coins
     global min_change
 
-    print(f"{change=}, {target_remaining=}, {index=}, {min_coins=}")
-
     if target_remaining == 0:
         """if coins_used < min_coins:""" #Not necessary, as check already handles this case.
         min_coins = coins_used
@@ -32,9 +30,6 @@ def make_change_bnb_helper(change, target_remaining, denoms, index, coins_used):
             break
 
     return True
-
-
-
 
 
 def make_change_bnb(target, denoms):

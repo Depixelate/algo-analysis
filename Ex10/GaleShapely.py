@@ -20,7 +20,10 @@ def main():
     n = int(input("Enter the number of scholars and advisors: "))
     scholar_prefs = [eval(input(f"Enter the preference order for scholar {i+1}: ")) for i in range(n)]
     advisor_prefs = [eval(input(f"Enter the preference order for advisor {i+1}: ")) for i in range(n)]
-    print(GaleShapely(scholar_prefs, advisor_prefs))
+    adv_to_schol = GaleShapely(scholar_prefs, advisor_prefs)
+    for i in range(n):
+        print(f"Advisor {i+1}: Scholar {adv_to_schol[i]+1}")
+     
         
 
 if __name__ == "__main__":

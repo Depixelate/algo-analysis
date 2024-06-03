@@ -41,6 +41,12 @@ def min_match(cost):
 
 if __name__ == "__main__":
     n = int(input("Enter number of people and jobs: "))
-    cost = [eval(input(f"Enter the costs for jobs 1 to {n} for person {i + 1}")) for i in range(n)]
-    print(min_match(cost))
-        
+    cost = [eval(input(f"Enter the costs for jobs 1 to {n} for person {i + 1}: ")) for i in range(n)]
+    tot_cost, person_to_job = min_match(cost)
+    print(f"Total Cost: {tot_cost}")
+    print("Matches: ")
+    for p, j in enumerate(person_to_job):
+        print(f"Person {p+1}: Job {j+1}")
+
+
+    
